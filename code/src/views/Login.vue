@@ -1,4 +1,5 @@
 <template>
+<div class="all">
 <div class="login-bg">
     <div class="login-contain">
     <div class="login-header">
@@ -9,7 +10,7 @@
             <label for="username">
                 <img src="../assets/login/user.png">
             </label>
-            <input v-model="phone" id="username" type="text" placeholder="请输入手机账号">
+            <input v-model="phone" id="username" type="text" placeholder="请输入账号">
         </div>
         <div class="form-item">
             <label for="password">
@@ -24,16 +25,15 @@
     </div>
 
     <div class="order-login">
-        <p class="order-login-line">其他登录方式</p>
+        <p class="order-login-line">还没有账号？点击注册</p>
         <div class="order-login-box">
-            <div>
-                <a href="#">
-                    <img src="../assets/login/wechat-login.png" alt="" style="width: 45px;height: 45px;">
-                    <p>微信登录</p>
-                </a>
-            </div>
+       
+                
+                    <img src="../assets/login/zhuce.png" alt="" style="width: 105px;height: 40px;" @click="$router.push('/register')">
+                   
         </div>
     </div>
+</div>
 </div>
 </div>
 </template>
@@ -61,10 +61,9 @@ export default{
 }
 </script>
 <style lang="scss" scoped>
-// body, html, div, a, span, p, h1, h2, h3, h4, h5, ul, li, input, button {
-//     margin: 0;
-//     padding: 0;
-// }
+.all{
+    width:100%;
+
 
 a, li {
     list-style: none;
@@ -85,7 +84,7 @@ a {
     background-size: 100% 100%;
 }
 .login-contain {
-    width: 85%;
+    width: 100%;
     margin:0,
 }
 .login-header {
@@ -212,19 +211,12 @@ a {
 .order-login-line:after {
     right: 10%;
 }
-.order-login-box {
-    display: flex;
+.order-login-box img{
+
     width: 100%;
-    justify-content:center;
+ 
     margin-top: 20px;
 }
-.order-login-box div{
-    flex: 1;
-    text-align: center;
-}
-.order-login-box div p{
-    text-align: center;
-    font-size: 14px;
-    color: #ffffff;
+
 }
 </style>

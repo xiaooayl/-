@@ -29,9 +29,11 @@
   <aboutZ></aboutZ>
   <van-divider :style="{ borderColor: '#a5a5a5', margin: '0px' }">
   </van-divider>
+  <aboutX></aboutX>
 </template>
 <script>
 import aboutZ from "@/components/aboutZ.vue";
+import aboutX from "@/components/aboutX.vue";
 import { getUser } from "@/api/index.js";
 import store from "@/store";
 import { Divider } from "vant";
@@ -40,6 +42,7 @@ export default {
   components: {
     aboutZ,
     [Divider.name]: Divider,
+    aboutX
   },
   setup() {
     const state = reactive({
@@ -49,7 +52,7 @@ export default {
     onMounted(async () => {
       let id = store.state.userId;
       console.log(id);
-      let result = await getUser("1");
+      let result = await getUser(id);
       console.log(result);
       state.user = result.data.data[0];
     });

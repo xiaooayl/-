@@ -11,6 +11,12 @@ export function getLogin(username,pass){
 export function getUser(id){
     return axios.get(`${baseUrl}/api/user?${id}`)
 }
+export function getRegister(username,pass,pass2){
+    return axios.get(`${baseUrl}/api/register?${username}&${pass}&${pass2}`)
+}
+export function getOrder(user_id){
+    return axios.get(`${baseUrl}/api/order?${user_id}`)
+}
 export default{
-    getBanner,getLogin
+    getBanner,getLogin,getUser,getRegister,getOrder
 }
