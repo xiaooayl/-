@@ -24,6 +24,9 @@ const routes = [
   {path: '/order',
   name: 'order',
   component: () => import(/* webpackChunkName: "about" */ '../views/Order.vue')},
+  {path: '/change',
+  name: 'change',
+  component: () => import(/* webpackChunkName: "about" */ '../views/Change.vue')},
 ]
 
 const router = createRouter({

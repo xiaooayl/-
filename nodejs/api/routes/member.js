@@ -1,6 +1,18 @@
 var express = require('express');
 var router = express.Router();
 let model=require("../model/db.js");
+const multer=require('multer')
+const storage = multer.diskStorage({
+    destination: function(req,file,cb){
+        cb(null,'uploads/user')
+    },
+    filename:function (req,file,cb){
+        cb(null,file.originalname)
+    }
+})
+const upload =multer({
+    storage
+})
 router.get("/login",async(req,res)=>{
     // let {username,pass} = req.body;
     let url = req.url;
@@ -80,9 +92,16 @@ router.get("/order",async(req,res)=>{
     }
     console.log(x)
     // var tokens = new Array(x.length).fill('?').join(',');
-
-     sql = `SELECT name,amount,CONCAT("http://127.0.0.1:3000/","uploads/",img) as img from rimai where rimai_id in(1,2)`;
+    let str="" 
+    let h=1
+    for (let val of x)  { if(h!==x.length){str+=val+",";h++}
+else{
+    str+=val
+}}
+    console.log(str)
+     sql = `SELECT name,amount,CONCAT("http://127.0.0.1:3000/","uploads/",img) as img from rimai where rimai_id in (${str})`;
      [err,data]=await model.query(sql);
+    
      res.send({
                 "code":"200","msg":"登录成功","data":data
             })
@@ -97,5 +116,9 @@ router.get("/order",async(req,res)=>{
     //     })
     // }
   }
+})
+router.post("/file",upload.single('file'),(req,res)=>{
+    console.log(req.file)
+    res.send('ok')
 })
 module.exports = router;

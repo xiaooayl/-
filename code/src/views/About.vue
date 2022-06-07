@@ -11,7 +11,7 @@
     </div>
     <div class="top_2">
       <div class="touxiang">
-        <img :src="user.user_img" />
+        <img :src="user.user_img" @click="$router.push('/change')"/>
       </div>
       <div class="middle">
         <div class="name">
@@ -38,6 +38,7 @@ import { getUser } from "@/api/index.js";
 import store from "@/store";
 import { Divider } from "vant";
 import { reactive, toRefs, onMounted } from "vue";
+// import axios from 'axios';
 export default {
   components: {
     aboutZ,
@@ -46,7 +47,8 @@ export default {
   },
   setup() {
     const state = reactive({
-      user: [],
+      user: []
+
     });
 
     onMounted(async () => {
@@ -56,8 +58,24 @@ export default {
       console.log(result);
       state.user = result.data.data[0];
     });
+   
+    // const iimg = async(event)=>{
+    //   //  var file = event.target.files; 
+    //   let baseUrl="/api";
+    //   var formDate = new FormData();
+    //   formDate.append("file",event.target.files[0])
+    //   const {data: res} = await axios.post(`${baseUrl}/api/file`,formDate,{
+    //   headers:{
+    //     "Content-Type":"multipart/form-data"
+    //   }
+    //   })
+    //   console.log(res)
+    
+    // }
+  
     return {
       ...toRefs(state),
+      // iimg
     };
   },
 };
